@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2026 Norway Trip｜挪威自由行行程表</title>
+  <style>
+    :root {
+      --bg:#eef3f7;
+      --bg-soft:#f7f9fb;
+      --card:#ffffffee;
+      --text:#11151c;
+      --muted:#5f6b7a;
+      --line:#d5dee7;
+      --blue:#4b6d8f;
+      --deep:#1a2431;
+      --accent:#7c9fbe;
+      --shadow:0 18px 60px rgba(27, 45, 66, .08);
+      --radius:30px;
+      --max:1240px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+      color:var(--text);
+      background:linear-gradient(180deg,#e7f0f7 0%, #f4f7fa 34%, #ffffff 100%);
+      line-height:1.7;
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .wrap{width:min(var(--max), calc(100% - 36px)); margin:0 auto}
+    .topnav{
+      position:sticky; top:0; z-index:50; backdrop-filter: blur(16px);
+      background:rgba(245,248,251,.75); border-bottom:1px solid rgba(213,222,231,.6);
+    }
+    .topnav .wrap{display:flex; align-items:center; justify-content:space-between; gap:24px; padding:14px 0}
+    .brand{display:flex;align-items:center;gap:16px}
+    .flag{font-size:34px;line-height:1}
+    .brand h1{margin:0;font-size:18px;font-weight:700;letter-spacing:.04em}
+    .brand p{margin:2px 0 0;color:var(--muted);font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+    .navlinks{display:flex;flex-wrap:wrap;gap:16px;font-size:14px;color:var(--muted)}
+    .navlinks a:hover{color:var(--deep)}
+
+    .hero{padding:36px 0 32px}
+    .hero-grid{
+      display:grid; grid-template-columns: 1.15fr .85fr; gap:22px; align-items:stretch;
+    }
+    .hero-main{
+      min-height:660px; position:relative; overflow:hidden; border-radius:38px; box-shadow:var(--shadow);
+      background:#cad8e6;
+    }
+    .hero-main img{width:100%; height:100%; object-fit:cover}
+    .hero-overlay{
+      position:absolute; inset:0; background:linear-gradient(180deg, rgba(18,34,48,.15), rgba(18,34,48,.35));
+      display:flex; flex-direction:column; justify-content:space-between; padding:28px;
+      color:#fff;
+    }
+    .eyebrow{font-size:13px; letter-spacing:.32em; text-transform:uppercase; opacity:.85}
+    .hero-title{max-width:560px}
+    .hero-title h2{margin:0 0 16px; font-size:clamp(42px, 7vw, 90px); line-height:.92; letter-spacing:-.05em}
+    .hero-title p{max-width:520px; font-size:18px; color:rgba(255,255,255,.88); margin:0}
+    .hero-meta{display:flex;flex-wrap:wrap;gap:14px;margin-top:22px}
+    .chip{padding:11px 15px; border-radius:999px; background:rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.28); font-size:13px; backdrop-filter: blur(6px)}
+
+    .hero-side{display:grid; grid-template-rows:auto 1fr auto; gap:22px}
+    .summary-card, .mini-card, .panel, .day-card, .hotel-card, .flight-card, .note-card{
+      background:var(--card); border:1px solid rgba(213,222,231,.8); border-radius:var(--radius); box-shadow:var(--shadow);
+    }
+    .summary-card{padding:24px}
+    .summary-card .small{font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:var(--muted)}
+    .summary-card h3{font-size:48px; line-height:1.02; margin:10px 0 12px; letter-spacing:-.05em}
+    .summary-card p{margin:0; color:var(--muted)}
+    .quickfacts{display:grid; grid-template-columns:repeat(2,1fr); gap:14px}
+    .mini-card{padding:18px 18px 16px}
+    .mini-card h4{margin:0 0 10px; font-size:15px}
+    .mini-card .value{font-size:28px; font-weight:700; letter-spacing:-.04em}
+    .mini-card p{margin:8px 0 0; font-size:13px; color:var(--muted)}
+    .side-photo{overflow:hidden; border-radius:var(--radius); min-height:220px; position:relative}
+    .side-photo img{width:100%; height:100%; object-fit:cover}
+    .side-photo .label{position:absolute; left:18px; bottom:18px; background:rgba(255,255,255,.82); padding:10px 14px; border-radius:999px; font-size:13px; color:#17304a}
+
+    section{padding:34px 0}
+    .section-head{display:grid; grid-template-columns:260px 1fr; gap:30px; align-items:start; margin-bottom:20px}
+    .kicker{font-size:12px; letter-spacing:.28em; color:var(--muted); text-transform:uppercase; margin-bottom:14px}
+    .section-title{font-size:clamp(40px, 7vw, 92px); line-height:.9; letter-spacing:-.06em; margin:0; font-weight:400}
+    .section-subtitle{font-size:20px; margin:0 0 10px}
+    .section-desc{margin:0; color:var(--muted); max-width:760px}
+
+    .poster-panel{padding:24px}
+    .poster-panel img{border-radius:20px; border:1px solid var(--line)}
+
+    .info-grid{display:grid;grid-template-columns:1.2fr .8fr; gap:20px}
+    .panel{padding:22px}
+    .panel h4{margin:0 0 12px; font-size:22px}
+    .panel p, .panel li{color:var(--muted)}
+    .two-col{display:grid; grid-template-columns:repeat(2,1fr); gap:12px 22px}
+    .check{display:flex; gap:10px; align-items:flex-start; font-size:15px; color:var(--muted)}
+    .check b{color:var(--deep)}
+
+    .timeline-grid{display:grid; gap:20px}
+    .day-card{padding:24px; display:grid; grid-template-columns:220px 1fr 260px; gap:24px; align-items:start}
+    .day-num{display:flex; flex-direction:column; gap:10px}
+    .day-badge{width:68px;height:68px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#dcebf7,#fff);border:1px solid var(--line);font-weight:700;color:#234867;font-size:18px;box-shadow:0 10px 25px rgba(41,72,109,.12)}
+    .date{font-size:14px;color:var(--muted);letter-spacing:.04em}
+    .day-title{font-size:26px; line-height:1.1; margin:0}
+    .route{font-size:15px;color:var(--deep);margin-top:8px}
+    .timeline-list{margin:0; padding-left:18px}
+    .timeline-list li{margin:0 0 10px}
+    .tags{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px}
+    .tag{padding:7px 10px; border:1px solid var(--line); border-radius:999px; font-size:12px; color:var(--muted); background:#f8fafc}
+    .thumb{border-radius:24px; overflow:hidden; min-height:210px; position:relative}
+    .thumb img{width:100%; height:100%; object-fit:cover}
+    .thumb .caption{position:absolute; left:14px; bottom:14px; background:rgba(255,255,255,.82); backdrop-filter: blur(8px); padding:8px 12px; border-radius:999px; font-size:12px}
+
+    .hotel-grid{display:grid; grid-template-columns: repeat(2,1fr); gap:20px}
+    .hotel-card{padding:22px; display:flex; flex-direction:column; gap:10px}
+    .hotel-card .city{font-size:13px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted)}
+    .hotel-card h5{margin:0; font-size:24px; line-height:1.2}
+    .hotel-card p{margin:0; color:var(--muted)}
+    .actions{display:flex; flex-wrap:wrap; gap:10px; margin-top:4px}
+    .btn{display:inline-flex; align-items:center; gap:8px; padding:11px 14px; background:#f3f7fa; border:1px solid var(--line); border-radius:999px; font-size:14px; color:var(--deep)}
+    .btn.primary{background:linear-gradient(145deg,#1f3d59,#4f82b2); color:#fff; border:none}
+    .btn:hover{transform:translateY(-1px)}
+
+    .flight-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+    .flight-card{padding:20px}
+    .flight-card .label{font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted)}
+    .flight-card h5{font-size:30px; margin:10px 0 8px; letter-spacing:-.04em}
+    .flight-card p{margin:0; color:var(--muted)}
+
+    .note-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+    .note-card{padding:20px}
+    .note-card h5{margin:0 0 10px; font-size:20px}
+    .note-card p{margin:0; color:var(--muted)}
+
+    footer{padding:40px 0 70px}
+    .footerbox{padding:26px; border-radius:34px; background:#f7fafc; border:1px solid var(--line); display:flex; justify-content:space-between; gap:24px; flex-wrap:wrap}
+    .footerbox p{margin:0; color:var(--muted)}
+    .footerbox strong{display:block; font-size:18px; color:var(--deep); margin-bottom:8px}
+    .credits{font-size:12px; color:#778596}
+
+    @media (max-width: 1100px){
+      .hero-grid, .info-grid, .section-head, .day-card{grid-template-columns:1fr}
+      .day-card{padding:22px}
+      .flight-grid, .note-grid, .hotel-grid{grid-template-columns:1fr}
+      .section-head{gap:10px}
+    }
+    @media (max-width: 760px){
+      .wrap{width:min(var(--max), calc(100% - 24px))}
+      .hero-main{min-height:520px}
+      .hero-overlay{padding:20px}
+      .hero-title h2{font-size:46px}
+      .summary-card h3{font-size:36px}
+      .day-card{gap:18px}
+      .thumb{min-height:180px}
+      .quickfacts{grid-template-columns:1fr}
+      .navlinks{display:none}
+    }
+  </style>
+</head>
+<body>
+  <header class="topnav">
+    <div class="wrap">
+      <div class="brand">
+        <div class="flag">🇳🇴</div>
+        <div>
+          <h1>2026 挪威自由行｜Norway Journey</h1>
+          <p>Travel dossier · One-page itinerary</p>
+        </div>
+      </div>
+      <nav class="navlinks">
+        <a href="#overview">概覽</a>
+        <a href="#map">路線地圖</a>
+        <a href="#itinerary">每日行程</a>
+        <a href="#hotels">住宿</a>
+        <a href="#flights">航班</a>
+        <a href="#notes">注意事項</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-main">
+          <img src="assets/hero_bergen.png" alt="Bergen Bryggen" />
+          <div class="hero-overlay">
+            <div class="eyebrow">NORWAY · SELF-DRIVE · 2026/09/24–10/05</div>
+            <div class="hero-title">
+              <h2>挪威自由行<br>行程總覽</h2>
+              <p>給同行團員與海關人員快速查看的單頁行程頁。清楚呈現日期、城市、住宿、航班、每日動線與重點景點，並附上住宿 Google Maps 連結。</p>
+              <div class="hero-meta">
+                <div class="chip">4位成人</div>
+                <div class="chip">自駕＋國內線</div>
+                <div class="chip">Trolltunga / Lofoten / Tromsø / Oslo</div>
+              </div>
+            </div>
+            <div class="eyebrow">Craft the route, chase the scenery, travel with clarity.</div>
+          </div>
+        </div>
+
+        <div class="hero-side">
+          <div class="summary-card">
+            <div class="small">At a glance</div>
+            <h3>10天9夜<br>挪威路線</h3>
+            <p>台灣出發，經曼谷轉機，進入挪威後依序走訪 <strong>卑爾根 / 巨人之舌 / 羅弗敦 / 特羅姆瑟 / 奧斯陸</strong>。</p>
+          </div>
+
+          <div class="quickfacts">
+            <div class="mini-card">
+              <h4>挪威停留</h4>
+              <div class="value">9/25–10/4</div>
+              <p>入境地：BGO 卑爾根<br>離境地：OSL 奧斯陸</p>
+            </div>
+            <div class="mini-card">
+              <h4>住宿晚數</h4>
+              <div class="value">6 間</div>
+              <p>Odda / Bergen / Reine / Kabelvåg / Tromsø / Oslo</p>
+            </div>
+            <div class="mini-card">
+              <h4>國內航班</h4>
+              <div class="value">4 段</div>
+              <p>OSL→BGO / BGO→EVE / EVE→TOS / TOS→OSL</p>
+            </div>
+            <div class="mini-card">
+              <h4>主要目標</h4>
+              <div class="value">Trolltunga</div>
+              <p>9/26 主攻，拍自然風景，Lofoten 攝影，Tromsø 極光</p>
+            </div>
+          </div>
+
+          <div class="side-photo">
+            <img src="assets/lofoten.png" alt="Lofoten" />
+            <div class="label">Lofoten · Scenic coast & fishing villages</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="overview">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="kicker">Overview</div>
+            <h2 class="section-title">Route</h2>
+          </div>
+          <div>
+            <h3 class="section-subtitle">旅程路線與查驗重點</h3>
+            <p class="section-desc">以下內容可作為同行團員行前確認，也適合在機場或海關需要說明時快速展示。內含挪威境內移動方式、住宿資訊、航班時間與每日簡要動線。</p>
+          </div>
+        </div>
+        <div class="info-grid">
+          <div class="panel">
+            <h4>旅行總動線</h4>
+            <div class="two-col">
+              <div class="check">✓ <span><b>9/24–9/25</b><br>台灣桃園 → 曼谷 → 奧斯陸 → 卑爾根</span></div>
+              <div class="check">✓ <span><b>9/25–9/27</b><br>卑爾根取車 → Hardanger → Odda / Tyssedal → Trolltunga</span></div>
+              <div class="check">✓ <span><b>9/27–9/28</b><br>返回卑爾根市區，住宿 1 晚</span></div>
+              <div class="check">✓ <span><b>9/28–9/30</b><br>飛往 Evenes，前往羅弗敦：Reine / Hamnøy / Henningsvær</span></div>
+              <div class="check">✓ <span><b>9/30–10/2</b><br>飛往 Tromsø，市區散步、纜車、極光觀察</span></div>
+              <div class="check">✓ <span><b>10/2–10/4</b><br>飛往 Oslo，市區文化景點與回程準備</span></div>
+            </div>
+          </div>
+          <div class="panel">
+            <h4>旅程摘要</h4>
+            <ul>
+              <li><strong>成員：</strong>4 位成人</li>
+              <li><strong>旅行型態：</strong>自駕、國內線航班、市區步行與大眾運輸混合</li>
+              <li><strong>住宿規劃：</strong>以交通與景點便利性為優先，已安排 6 間住宿</li>
+              <li><strong>景點重點：</strong>Trolltunga、Bryggen、Reinebringen、Hamnøy、Fjellheisen、Oslo Opera House</li>
+              <li><strong>備註：</strong>餐食以自煮與超市採買為主；Trolltunga 受天候影響最大</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="map">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="kicker">Norway map</div>
+            <h2 class="section-title">Map</h2>
+          </div>
+          <div>
+            <h3 class="section-subtitle">挪威旅遊路線圖</h3>
+            <p class="section-desc">依照實際行程標示的簡明路線圖：從卑爾根進入、羅弗敦與 Tromsø 北上，再由 Oslo 離境。適合快速視覺化整趟路線。</p>
+          </div>
+        </div>
+        <div class="poster-panel panel">
+          <img src="assets/route_map.png" alt="挪威行程地圖" />
+        </div>
+      </div>
+    </section>
+
+    <section id="itinerary">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="kicker">Itinerary</div>
+            <h2 class="section-title">Days</h2>
+          </div>
+          <div>
+            <h3 class="section-subtitle">每日行程表</h3>
+            <p class="section-desc">以易讀方式整理每日時間、地點與景點重點。若團員只要看一頁，就看這一段即可。</p>
+          </div>
+        </div>
+
+        <div class="timeline-grid">
+          <article class="day-card">
+            <div class="day-num">
+              <div class="day-badge">D1</div>
+              <div class="date">2026 / 09 / 25（五）</div>
+              <h3 class="day-title">卑爾根機場 → Hardanger → Odda / Tyssedal</h3>
+              <div class="route">路線：BGO 取車 → 超市補給 → Steinsdalsfossen → Tørvikbygd 渡輪 → Trolltunga Aparthotel</div>
+            </div>
+            <div>
+              <ul class="timeline-list">
+                <li><strong>11:30–12:25</strong> OSL → BGO 國內航班（SAS SK257）</li>
+                <li><strong>14:00</strong> 卑爾根機場取車，詢問 AutoPASS / ferry 收費方式</li>
+                <li>沿 Hardanger 景觀公路南下，時間允許可停留 <strong>Steinsdalsfossen</strong></li>
+                <li>搭乘 <strong>Tørvikbygd → Jondal</strong> 渡輪，再前往 Odda / Tyssedal</li>
+                <li>入住後於超市補給隔日 Trolltunga 早餐、午餐與飲水</li>
+              </ul>
+              <div class="tags">
+                <span class="tag">自駕</span>
+                <span class="tag">景觀公路</span>
+                <span class="tag">瀑布</span>
+                <span class="tag">超市採買</span>
+              </div>
+            </div>
+            <div class="thumb">
+              <img src="assets/hero_bergen.png" alt="Bergen" />
+              <div class="caption">Bergen · Bryggen / Hardanger gateway</div>
+            </div>
+          </article>
+
+          <article class="day-card">
+            <div class="day-num">
+              <div class="day-badge">D2</div>
+              <div class="date">2026 / 09 / 26（六）</div>
+              <h3 class="day-title">Trolltunga 主攻日</h3>
+              <div class="route">路線：住宿 → P3 停車場 / 登山口 → Trolltunga → 返回住宿</div>
+            </div>
+            <div>
+              <ul class="timeline-list">
+                <li><strong>06:00–06:30</strong> 起床；<strong>06:30</strong> 早餐；<strong>07:00</strong> 左右出發</li>
+                <li><strong>07:30–08:00</strong> 開始健行，主目標為 <strong>Trolltunga 巨人之舌</strong></li>
+                <li>若天氣不佳，改用雨天備案：Låtefossen / Langfoss、Rosendal 室內文化行程或 Odda 桑拿休息</li>
+                <li>當日重點是天候與安全，步道狀態不佳則不硬上</li>
+              </ul>
+              <div class="tags">
+                <span class="tag">健行重點日</span>
+                <span class="tag">P3 停車場</span>
+                <span class="tag">雨天備案</span>
+                <span class="tag">高天候彈性</span>
+              </div>
+            </div>
+            <div class="thumb">
+              <img src="assets/trolltunga.png" alt="Trolltunga" />
+              <div class="caption">Trolltunga · Hike day</div>
+            </div>
+          </article>
+
+          <article class="day-card">
+            <div class="day-num">
+              <div class="day-badge">D3</div>
+              <div class="date">2026 / 09 / 27（日）</div>
+              <h3 class="day-title">Odda / Tyssedal → 卑爾根市區</h3>
+              <div class="route">路線：退房 → Bergen 市區散步 → Scandic Ørnen</div>
+            </div>
+            <div>
+              <ul class="timeline-list">
+                <li><strong>08:30</strong> 左右退房，返回卑爾根</li>
+                <li>視體力與天氣安排市區景點：<strong>Bryggen、魚市場、Bergenhus Fortress、Fløibanen / Mt. Fløyen</strong></li>
+                <li>此日可彈性調整為 Trolltunga 備案日（若 9/26 延後）</li>
+              </ul>
+              <div class="tags">
+                <span class="tag">世界遺產</span>
+                <span class="tag">港口散步</span>
+                <span class="tag">城市觀光</span>
+              </div>
+            </div>
+            <div class="thumb">
+              <img src="assets/hero_bergen.png" alt="Bryggen" />
+              <div class="caption">Bryggen · Bergen old harbor</div>
+            </div>
+          </article>
+
+          <article class="day-card">
+            <div class="day-num">
+              <div class="day-badge">D4</div>
+              <div class="date">2026 / 09 / 28（一）</div>
+              <h3 class="day-title">卑爾根 → Evenes → Reine</h3>
+              <div class="route">路線：Scandic Ørnen → BGO 還車 → EVE 取車 → Svolvær / Leknes 補給 → Catogården</div>
+            </div>
+            <div>
+              <ul class="timeline-list">
+                <li><strong>06:00–06:40</strong> Check-out；<strong>07:00</strong> BGO 還車；<strong>09:30</strong> 托運與安檢</li>
+                <li><strong>10:30–13:35</strong> BGO → EVE（Widerøe WF1354）</li>
+                <li><strong>15:00</strong> EVE 取車，沿途於 Svolvær 或 Leknes 簡單補給</li>
+                <li>抵達 Reine 區域入住，傍晚散步並視天氣機動等極光</li>
+              </ul>
+              <div class="tags">
+                <span class="tag">國內線</span>
+                <span class="tag">羅弗敦移動</span>
+                <span class="tag">極光機動</span>
+              </div>
+            </div>
+            <div class="thumb">
+              <img src="assets/lofoten.png" alt="Lofoten" />
+              <div class="caption">Lofoten · Reine & Hamnøy</div>
+            </div>
+          </article>
+
+          <article class="day-card">
+            <div class="day-num">
+              <div class="day-badge">D5</div>
+              <div class="date">2026 / 09 / 29（二）</div>
+              <h3 class="day-title">羅弗敦主力攝影日</h3>
+              <div class="route">路線：Reinebringen → Å 漁村 → Sakrisøy / Hamnøy → Ramberg Beach → Henningsvær → Nyvågar</div>
+            </div>
+            <div>
+              <ul class="timeline-list">
+                <li><strong>07:00</strong> 起床；天氣允許則前往 <strong>Reinebringen</strong></li>
+                <li><strong>10:45</strong> Catogården Check-out</li>
+                <li>沿線走訪 <strong>Å 漁村、Sakrisøy、Hamnøy、Ramberg Beach、Henningsvær</strong></li>
+                <li>晚間入住 Nyvågar Rorbuhotel</li>
+              </ul>
+              <div class="tags">
+                <span class="tag">攝影重點日</span>
+                <span class="tag">漁村風景</span>
+                <span class="tag">海岸線</span>
+              </div>
+            </div>
+            <div class="thumb">
+              <img src="assets/lofoten.png" alt="Reine" />
+              <div class="caption">Reine / Hamnøy / Henningsvær</div>
+            </div>
+          </article>
+
+          <article class="day-card">
+            <div class="day-num">
+              <div class="day-badge">D6</div>
+              <div class="date">2026 / 09 / 30（三）</div>
+              <h3 class="day-title">羅弗敦 → Tromsø</h3>
+              <div class="route">路線：Nyvågar → EVE 還車 → TOS → Enter Backpack Hotel → Fjellheisen</div>
+            </div>
+            <div>
+              <ul class="timeline-list">
+                <li><strong>08:30</strong> Check-out，返回 Evenes 機場</li>
+                <li><strong>14:40–16:00</strong> EVE → TOS（Widerøe WF866）</li>
+                <li><strong>17:15–18:15</strong> Check-in 與晚餐</li>
+                <li>傍晚前往 <strong>Fjellheisen 纜車</strong>，欣賞 Tromsø 夜景</li>
+              </ul>
+              <div class="tags">
+                <span class="tag">國內線</span>
+                <span class="tag">纜車夜景</span>
+                <span class="tag">城市入門日</span>
+              </div>
+            </div>
+            <div class="thumb">
+              <img src="assets/tromso_city.png" alt="Tromso" />
+              <div class="caption">Tromsø · Arctic gateway</div>
+            </div>
+          </article>
+
+          <article class="day-card">
+            <div class="day-num">
+              <div class="day-badge">D7</div>
+              <div class="date">2026 / 10 / 01（四）</div>
+              <h3 class="day-title">Tromsø 市區與極光機動</h3>
+              <div class="route">路線：Telegrafbukta → Polaria → 市區散步 → Polar Museum → Arctic Cathedral → Prestvannet（視天氣）</div>
+            </div>
+            <div>
+              <ul class="timeline-list">
+                <li><strong>08:40–10:10</strong> Telegrafbukta</li>
+                <li><strong>10:45–12:30</strong> Polaria；午餐後市區步行</li>
+                <li><strong>13:45–15:00</strong> Polar Museum；<strong>15:00–17:00</strong> Tromsø Bridge＋Arctic Cathedral</li>
+                <li><strong>20:00 後</strong> 依天氣與極光預報，機動前往 <strong>Prestvannet</strong> 觀測</li>
+              </ul>
+              <div class="tags">
+                <span class="tag">博物館</span>
+                <span class="tag">北極教堂</span>
+                <span class="tag">極光彈性</span>
+              </div>
+            </div>
+            <div class="thumb">
+              <img src="assets/tromso_aurora.png" alt="Aurora" />
+              <div class="caption">Aurora chance · Tromsø region</div>
+            </div>
+          </article>
+
+          <article class="day-card">
+            <div class="day-num">
+              <div class="day-badge">D8</div>
+              <div class="date">2026 / 10 / 02（五）</div>
+              <h3 class="day-title">Tromsø → Oslo</h3>
+              <div class="route">路線：Prestvannet / 市區收尾 → TOS → OSL → MAYA Apartments</div>
+            </div>
+            <div>
+              <ul class="timeline-list">
+                <li>上午慢節奏收尾：早餐、Prestvannet 湖畔散步、港口與 Storgata</li>
+                <li><strong>16:00</strong> 前往 Tromsø 機場</li>
+                <li><strong>19:10–21:05</strong> TOS → OSL（SAS SK4431）</li>
+                <li>抵達後前往 Oslo 住宿</li>
+              </ul>
+              <div class="tags">
+                <span class="tag">市區散步</span>
+                <span class="tag">回程前段</span>
+                <span class="tag">航班移動</span>
+              </div>
+            </div>
+            <div class="thumb">
+              <img src="assets/oslo_opera.png" alt="Oslo" />
+              <div class="caption">Oslo · City stay begins</div>
+            </div>
+          </article>
+
+          <article class="day-card">
+            <div class="day-num">
+              <div class="day-badge">D9</div>
+              <div class="date">2026 / 10 / 03（六）</div>
+              <h3 class="day-title">Oslo 市區重點日</h3>
+              <div class="route">路線：Vigeland Park → Royal Palace → Karl Johans gate → Aker Brygge → Akershus Fortress → Bjørvika → Oslo Opera House → MUNCH</div>
+            </div>
+            <div>
+              <ul class="timeline-list">
+                <li><strong>09:30–11:00</strong> Vigeland Park</li>
+                <li><strong>11:20–12:30</strong> Royal Palace / Karl Johans gate 散步</li>
+                <li><strong>13:30–15:40</strong> Aker Brygge / Akershus Fortress</li>
+                <li><strong>16:20–17:30</strong> Bjørvika；<strong>17:30–19:00</strong> Oslo Opera House（日落重點）</li>
+                <li><strong>19:00–21:00</strong> MUNCH</li>
+              </ul>
+              <div class="tags">
+                <span class="tag">城市文化</span>
+                <span class="tag">海濱散步</span>
+                <span class="tag">日落景點</span>
+              </div>
+            </div>
+            <div class="thumb">
+              <img src="assets/oslo_opera.png" alt="Opera House" />
+              <div class="caption">Oslo Opera House · sunset highlight</div>
+            </div>
+          </article>
+
+          <article class="day-card">
+            <div class="day-num">
+              <div class="day-badge">D10</div>
+              <div class="date">2026 / 10 / 04（日）</div>
+              <h3 class="day-title">Oslo → 機場 → 曼谷</h3>
+              <div class="route">路線：Bjørvika 晨間散步 → Oslo S → OSL → TG955</div>
+            </div>
+            <div>
+              <ul class="timeline-list">
+                <li><strong>07:30–08:15</strong> 早餐；<strong>08:15–09:20</strong> Bjørvika 晨間散步</li>
+                <li>回住宿拿行李並 check-out；步行前往 Oslo S</li>
+                <li><strong>約 10:00</strong> 搭乘火車前往 OSL；<strong>13:45–06:35</strong> OSL → BKK（Thai Airways TG955）</li>
+                <li><strong>10/05 08:25–13:05</strong> BKK → TPE（TG632）</li>
+              </ul>
+              <div class="tags">
+                <span class="tag">返程</span>
+                <span class="tag">機場交通</span>
+                <span class="tag">國際線</span>
+              </div>
+            </div>
+            <div class="thumb">
+              <img src="assets/oslo_opera.png" alt="Oslo Airport departure" />
+              <div class="caption">Departure day · Oslo</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="hotels">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="kicker">Stay</div>
+            <h2 class="section-title">Hotels</h2>
+          </div>
+          <div>
+            <h3 class="section-subtitle">住宿與 Google Maps 連結</h3>
+            <p class="section-desc">以下按旅行順序列出住宿資訊，皆可直接點選 Google Maps。這一段最適合給同行團員快速查地址或導航。</p>
+          </div>
+        </div>
+        <div class="hotel-grid">
+          <article class="hotel-card">
+            <div class="city">Tyssedal / Odda · 9/25–9/27</div>
+            <h5>Trolltunga Aparthotel</h5>
+            <p>Mjøstølsvegen 5, 5770 Tyssedal, Norway</p>
+            <p>Check-in 16:00–00:30 · Check-out 11:00 前</p>
+            <div class="actions">
+              <a class="btn primary" target="_blank" href="https://maps.app.goo.gl/3M1qJAUNFbAyetbV7?g_st=ic">開啟 Google Maps</a>
+              <a class="btn" target="_blank" href="https://maps.app.goo.gl/PSuBbzKXjbjJE8sh9">Trolltunga P3 停車場</a>
+            </div>
+          </article>
+          <article class="hotel-card">
+            <div class="city">Bergen · 9/27–9/28</div>
+            <h5>Scandic Ørnen</h5>
+            <p>Lars Hillesgate 18, 5008 Bergen, Norway</p>
+            <p>卑爾根市區住宿，方便隔日機場移動</p>
+            <div class="actions">
+              <a class="btn primary" target="_blank" href="https://maps.app.goo.gl/nLSrvvVhKdUtKVKm6">開啟 Google Maps</a>
+            </div>
+          </article>
+          <article class="hotel-card">
+            <div class="city">Reine · 9/28–9/29</div>
+            <h5>Catogården - Boutique Home & Activity Centre</h5>
+            <p>Sverdrupsvei 9, 8390 Reine, Norway</p>
+            <p>Check-in 15:00–23:00 · Check-out 05:00–11:00</p>
+            <div class="actions">
+              <a class="btn primary" target="_blank" href="https://maps.app.goo.gl/ZYoUC4tJA1cBjjvM7">開啟 Google Maps</a>
+            </div>
+          </article>
+          <article class="hotel-card">
+            <div class="city">Kabelvåg · 9/29–9/30</div>
+            <h5>Nyvågar Rorbuhotell</h5>
+            <p>Storvågvn 22, 8310 Kabelvåg, Norway</p>
+            <p>Check-in 15:00–21:00 · Check-out 08:00–11:00</p>
+            <div class="actions">
+              <a class="btn primary" target="_blank" href="https://maps.app.goo.gl/dJYzUbmWjywXzG6V7">開啟 Google Maps</a>
+            </div>
+          </article>
+          <article class="hotel-card">
+            <div class="city">Tromsø · 9/30–10/2</div>
+            <h5>Enter Backpack Hotel</h5>
+            <p>Parkgata 4, 9008 Tromsø, Norway</p>
+            <p>市中心，方便步行與搭公車</p>
+            <div class="actions">
+              <a class="btn primary" target="_blank" href="https://maps.app.goo.gl/XhBXEzQtfeydJVPY7">開啟 Google Maps</a>
+            </div>
+          </article>
+          <article class="hotel-card">
+            <div class="city">Oslo · 10/2–10/4</div>
+            <h5>MAYA Apartments - Solli Plass</h5>
+            <p>62 Parkveien, 0254 Oslo, Norway</p>
+            <p>位於 Oslo 市區，方便前往 Oslo S 與主要景點</p>
+            <div class="actions">
+              <a class="btn primary" target="_blank" href="https://maps.app.goo.gl/9nCWkVh8EXbTMzbN6">開啟 Google Maps</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="flights">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="kicker">Flights</div>
+            <h2 class="section-title">Air</h2>
+          </div>
+          <div>
+            <h3 class="section-subtitle">重要航班資訊</h3>
+            <p class="section-desc">列出國際線與挪威國內線的重要班次。若需要在機場快速確認，可直接查看此區。</p>
+          </div>
+        </div>
+        <div class="flight-grid">
+          <article class="flight-card">
+            <div class="label">International</div>
+            <h5>TPE → BKK</h5>
+            <p>9/24 18:50–21:35 · Thai Airways TG635</p>
+            <p>BKK → OSL：9/25 00:05–07:25 · TG635</p>
+            <p>回程：10/04 OSL → BKK · TG955；10/05 BKK → TPE · TG632</p>
+          </article>
+          <article class="flight-card">
+            <div class="label">Domestic</div>
+            <h5>OSL → BGO</h5>
+            <p>9/25 11:30–12:25 · SAS SK257</p>
+            <p>入境後轉往卑爾根開始挪威行程</p>
+          </article>
+          <article class="flight-card">
+            <div class="label">Domestic</div>
+            <h5>BGO → EVE</h5>
+            <p>9/28 10:30–13:35 · Widerøe WF1354</p>
+            <p>EVE → TOS：9/30 14:40–16:00 · WF866</p>
+            <p>TOS → OSL：10/2 19:10–21:05 · SAS SK4431</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="notes">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="kicker">Notes</div>
+            <h2 class="section-title">Travel</h2>
+          </div>
+          <div>
+            <h3 class="section-subtitle">旅遊備註</h3>
+            <p class="section-desc">把最實用的提醒集中在一起。給團員看，也能在旅途中快速回頭確認。</p>
+          </div>
+        </div>
+        <div class="note-grid">
+          <article class="note-card">
+            <h5>Trolltunga 注意事項</h5>
+            <p>9/26 為主攻日，但需依風雨與能見度決定是否成行。前一晚先備妥早餐、午餐、水、雨具與保暖層；若天候不佳，以安全為優先直接啟動備案。</p>
+          </article>
+          <article class="note-card">
+            <h5>餐食與採買</h5>
+            <p>本次以自煮與超市採買為主。卑爾根機場取車後、羅弗敦進島後與 Odda / Tyssedal 為主要補給點，請預留基本炊具與糧食採買時間。</p>
+          </article>
+          <article class="note-card">
+            <h5>極光機動</h5>
+            <p>Tromsø 與羅弗敦皆保留夜間彈性。如天氣晴朗、雲量低且極光活動不錯，可視情況延長戶外停留；若天候差則改為市區散步或提早休息。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="footerbox">
+        <div>
+          <strong>2026 Norway Free Trip</strong>
+          <p>這是一份為團員與查驗需求整理的單頁行程頁，內容來源依照你們提供的 Excel 行程表彙整。</p>
+        </div>
+        <div>
+          <strong>檔案與使用方式</strong>
+          <p>開啟本頁後即可直接瀏覽；飯店按鈕可點選進入 Google Maps。建議手機與桌機皆可收藏使用。</p>
+        </div>
+      </div>
+      <p class="credits">Design direction inspired by a clean Japanese editorial web style: generous whitespace, elegant typography, airy light-blue palette, and travel-poster composition.</p>
+    </div>
+  </footer>
+</body>
+</html>
